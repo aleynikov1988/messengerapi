@@ -9,4 +9,5 @@ interface ConversationService {
     fun getConversation(userA: User, userB: User): Conversation?
     fun retrieveThread(conversationId: Long): Conversation
     fun listConversationsByUserId(userId: Long): ArrayList<Conversation>
+    fun getUsernameInterlocutor(conversation: Conversation, userId: Long): String
 }

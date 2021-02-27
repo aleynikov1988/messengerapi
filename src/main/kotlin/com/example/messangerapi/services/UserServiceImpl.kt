@@ -1,6 +1,7 @@
 package com.example.messangerapi.services
 
 import com.example.messangerapi.exceptions.InvalidUserIdException
+import com.example.messangerapi.exceptions.UserStatusEmptyException
 import com.example.messangerapi.exceptions.UsernameUnavailableException
 import com.example.messangerapi.models.User
 import com.example.messangerapi.repositories.UserRepository
@@ -52,5 +53,13 @@ class UserServiceImpl(val repository: UserRepository) : UserService {
         user?.password = "xxx xxxx xxx"
     }
 
-//    fun updateUserStatus(user: User)
+    @Throws(UserStatusEmptyException::class)
+    override fun updateUserStatus(user: User, status: String): User {
+        if (status.isEmpty()) {
+            throw UserStatusEmptyException("User is empty")
+        }
+        user.status = status
+        repository.save(user)
+        return user
+    }
 }

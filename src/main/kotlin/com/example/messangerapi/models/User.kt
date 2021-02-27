@@ -1,5 +1,6 @@
 package com.example.messangerapi.models
 
+import com.example.messangerapi.constants.AccountStatus
 import com.example.messangerapi.listeners.UserListener
 import org.springframework.format.annotation.DateTimeFormat
 import java.time.Instant
@@ -25,7 +26,7 @@ class User(
     var password: String = "",
     var status: String = "",
     @Pattern(regexp = "\\A(activated|deactivated)\\z")
-    var accountStatus: String = "activated",
+    var accountStatus: String = AccountStatus.ACTIVATED.status,
     @DateTimeFormat
     var createdAt: Date = Date.from(Instant.now())
 ) {

@@ -48,4 +48,12 @@ class ConversationServiceImpl(
 
         return conversationList
     }
+
+    override fun getUsernameInterlocutor(conversation: Conversation, userId: Long): String {
+        return if (conversation.sender?.id == userId) {
+            conversation.recipient?.username as String
+        } else {
+            conversation.sender?.username as String
+        }
+    }
 }
